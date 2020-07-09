@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class tictactoe {
     private static Scanner scanner;
-    private static String player = "X";
-    private static String ai = "O";
+    private static String player1 = "X";
+    private static String player2 = "O";
     public static String[][] board = {{"","",""},{"","",""},{"","",""}};
 
 
@@ -17,7 +17,7 @@ public class tictactoe {
         }
         return true;
     }
-    public static void printBoard(String letter) {
+    public static void printBoard() {
 //        int[] board = {1,2,3,4,5,6,7, 8, 9};
         int count = 0;
         int var = 0;
@@ -92,8 +92,7 @@ public class tictactoe {
             winner = board[1][1];
         return winner;
     }
-    public static void autoplay(String[][] board){
-
+    public static void playerInput(String[][] board){
     }
 
     public static void fillBoard(String letter, int index){
@@ -118,23 +117,28 @@ public class tictactoe {
             //Ask for player turn
             //Fill out the board with the corresponding letter
             if (counter == 0) {
+                System.out.println("Player 1 turn");
                 System.out.println("What position do you want to place letter at[1-9]");
                 int pos = scan.nextInt();
-                fillBoard(player, pos);
+                fillBoard(player1, pos);
                 counter = 1;
 
             } else{
-                autoplay(board);//Pop the O in a certain position
-              counter = 0;
+                System.out.println("Player 2 turn");
+                System.out.println("What position do you want to place letter at[1-9]");
+                int pos = scan.nextInt();
+                fillBoard(player2, pos);
+                counter = 0;
             }
 
 
             if (isGameOver(board)) {
-                System.out.println("We have a winner - " + getWinner(board));
+                System.out.print("We have a winner - " + getWinner(board));
+
                 break;
             }
 
-            printBoard(player);
+            printBoard();
         }
         if (!isGameOver(board))
             System.out.println("There is a tie ");
